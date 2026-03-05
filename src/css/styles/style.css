@@ -13274,6 +13274,20 @@ a.read_more i {
   right: 5px;
 }
 
+.nft_wrap.skeleton-box {
+  height: 200px;
+}
+
+.nft_coll_pp.skeleton-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.nft_coll_info.skeleton-box {
+  height: 40px;
+}
+
 .author_list {
   -moz-column-count: 4;
   -moz-column-gap: 20px;
@@ -15465,7 +15479,7 @@ img {
 
 /* -------------------------------------------------- 
     design for 768px
-    /* ================================================== */
+/* ================================================== */
 
 @media (min-width: 768px) and (max-width: 979px) {
   .slider_text {
@@ -16272,7 +16286,7 @@ img {
 
 /* -------------------------------------------------- 
     custom for 320px & 480px 
-    /* -------------------------------------------------- */
+/* -------------------------------------------------- */
 
 @media only screen and (max-width: 767px) {
   .de-table.table-rank thead th:nth-child(5),
@@ -16510,7 +16524,7 @@ img {
 
 /* -------------------------------------------------- 
     design for 480px
-    /* -------------------------------------------------- */
+/* -------------------------------------------------- */
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
@@ -16534,7 +16548,7 @@ img {
 
 /* -------------------------------------------------- 
     design for 320px
-    /* -------------------------------------------------- */
+/* -------------------------------------------------- */
 
 @media only screen and (max-width: 480px) {
   .pf_full_width .item {
