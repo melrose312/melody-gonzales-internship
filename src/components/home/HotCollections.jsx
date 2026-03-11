@@ -7,7 +7,7 @@ const HotCollections = () => {
 
   async function fetchItems() {
     const { data } = await axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setItems(data);
   }
