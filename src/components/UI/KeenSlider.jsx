@@ -17,7 +17,7 @@ function KeenSlider({ slides }) {
             setLoaded(true);
         },
     });
-    // Keeps slide sizing consistent when slides(nftImage) changes
+    // Keeps slide sizing consistent when slides(nftImage) scroll
     useEffect(() => {
         if (setSlider.current) {
             setSlider.current.update();
