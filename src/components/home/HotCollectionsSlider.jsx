@@ -1,22 +1,7 @@
 import { Link } from "react-router-dom";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import KeenSlider from "../UI/KeenSlider";
 
 function HotCollectionsSlider({ items }) {
-  const options = {
-    loop: true,
-    margin: 10,
-    nav: true,
-    dots: false,
-    responsive: {
-      0: { items: 1 },
-      576: { items: 2 },
-      768: { items: 3 },
-      1200: { items: 4 },
-    },
-  };
-
   const skeletonCount = 4;
 
   return (
@@ -31,49 +16,51 @@ function HotCollectionsSlider({ items }) {
           </div>
         </div>
 
-        {items.length > 0 ? (
-          <OwlCarousel className="owl-theme" key="loaded" {...options}>
-            {items.map((item) => (
-              <div className="nft_coll" key={item.id}>
-                <div className="nft_wrap">
-                  <Link to={`/item-details/${item.id}`}>
-                    <img
-                      src={item.nftImage}
-                      className="lazy img-fluid"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img
-                      className="lazy pp-coll"
-                      src={item.authorImage}
-                      alt=""
-                    />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{item.title}</h4>
-                  </Link>
-                  <span>ERC-{item.code}</span>
+        <KeenSlider slides={
+          items.length > 0 ? (
+            items.map((item) => (
+              <div className="keen-slider__slide" key={item.id}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Link to={`/item-details/${item.id}`}>
+                      <img
+                        src={item.nftImage}
+                        className="lazy img-fluid"
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <img
+                        className="lazy pp-coll"
+                        src={item.authorImage}
+                        alt=""
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{item.title}</h4>
+                    </Link>
+                    <span>ERC-{item.code}</span>
+                  </div>
                 </div>
               </div>
-            ))}
-          </OwlCarousel>
-        ) : (
-          <OwlCarousel className="owl-theme" key="skeleton" {...options}>
-            {Array(skeletonCount).fill(0).map((_, index) => (
-              <div className="nft_coll" key={index}>
-                <div className="nft_wrap skeleton-box"></div>
-                <div className="nft_coll_pp skeleton-box"></div>
-                <div className="nft_coll_info skeleton-box"></div>
+            ))
+          ) : (
+            Array(skeletonCount).fill(0).map((_, index) => (
+              <div className="keen-slider__slide" key={index}>
+                <div className="nft_coll">
+                  <div className="nft_wrap skeleton-box"></div>
+                  <div className="nft_coll_pp skeleton-box"></div>
+                  <div className="nft_coll_info skeleton-box"></div>
+                </div>
               </div>
-            ))}
-          </OwlCarousel>
-        )}
+            ))
+          )
+        } />
       </div>
     </section>
   );
