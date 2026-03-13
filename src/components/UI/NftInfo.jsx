@@ -7,9 +7,9 @@ function NftInfo({ nftCard }) {
       <div className="author_list_pp">
         <Link
           to={`/author/${nftCard.authorId}`}
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title={`Creator: ${nftCard.authorName}`}
+          data-bs-toggle={nftCard.authorName ? "tooltip" : undefined}
+          data-bs-placement={nftCard.authorName ? "top" : undefined}
+          title={nftCard.authorName ? `Creator: ${nftCard.authorName}` : undefined}
 
         >
           <img className="lazy" src={nftCard.authorImage} alt="" />
