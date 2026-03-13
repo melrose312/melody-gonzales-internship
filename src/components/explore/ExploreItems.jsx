@@ -6,23 +6,31 @@ import Skeleton from "../UI/Skeleton";
 
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
+  const [filter, setFilter] = useState("");
   const [loadMore, setLoadMore] = useState(8);
 
-  async function fetchExploreItems() {
-    const { data } = await axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-    );
-    setExploreItems(data);
+  async function fetchExploreItems(filterValue) {
+    {
+      const filteredItems = filterValue
+        ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`
+        : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+      const { data } = await axios.get(filteredItems);
+      setExploreItems(data);
+    }
   }
 
   useEffect(() => {
-    fetchExploreItems();
-  }, []);
+    fetchExploreItems(filter);
+  }, [filter]);
 
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select
+          id="filter-items"
+          defaultValue=""
+          onChange={(event) => setFilter(event.target.value)}
+        >
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -60,7 +68,7 @@ const ExploreItems = () => {
                 </div>
               </div>
             ))}
-            {/* Hide button when all items display on the page */}
+      {/* Hide button when all items display on the page */}
       {loadMore < exploreItems.length && (
         <div className="col-md-12 text-center">
           <Link
