@@ -1,25 +1,24 @@
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Author = () => {
   const [authorItems, setAuthorItems] = useState([]);
+  const [following, setFollowing] = useState(false);
   const { authorId } = useParams();
 
-
   async function fetchAuthorItems() {
-    const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
-    setAuthorItems(data)
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
+    );
+    setAuthorItems(data);
   }
 
   useEffect(() => {
     fetchAuthorItems();
   }, [authorId]);
-
-  console.log(authorItems);
-
 
   return (
     <div id="wrapper">
@@ -47,7 +46,9 @@ const Author = () => {
                       <div className="profile_name">
                         <h4>
                           {authorItems.authorName}
-                          <span className="profile_username">{authorItems.tag}</span>
+                          <span className="profile_username">
+                            {authorItems.tag}
+                          </span>
                           <span id="wallet" className="profile_wallet">
                             {authorItems.address}
                           </span>
@@ -60,9 +61,11 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{authorItems.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <div className="profile_follower">
+                        {authorItems.followers + (following ? 1 : 0)} followers
+                      </div>
+                      <Link to="#" className="btn-main" onClick={() => setFollowing(!following)}>
+                        {following ? "Unfollow" : "Follow"}
                       </Link>
                     </div>
                   </div>
@@ -71,7 +74,10 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems authorItems={authorItems.nftCollection || []} authorImage={authorItems.authorImage} />
+                  <AuthorItems
+                    authorItems={authorItems.nftCollection || []}
+                    authorImage={authorItems.authorImage}
+                  />
                 </div>
               </div>
             </div>
