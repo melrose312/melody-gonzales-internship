@@ -11,16 +11,16 @@ const Author = () => {
   const [loading, setLoading] = useState(true);
   const { authorId } = useParams();
 
-  async function fetchAuthorItems() {
-    setLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
-    );
-    setAuthorItems(data);
-    setLoading(false);
-  }
-
   useEffect(() => {
+    async function fetchAuthorItems() {
+      setLoading(true);
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
+      );
+      setAuthorItems(data);
+      setLoading(false);
+    }
+
     fetchAuthorItems();
   }, [authorId]);
 

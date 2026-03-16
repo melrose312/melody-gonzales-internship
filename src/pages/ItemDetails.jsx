@@ -9,16 +9,16 @@ const ItemDetails = () => {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  async function fetchNftId() {
-    setLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`,
-    );
-    setItem(data);
-    setLoading(false);
-  }
-
   useEffect(() => {
+    async function fetchNftId() {
+      setLoading(true);
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`,
+      );
+      setItem(data);
+      setLoading(false);
+    }
+
     fetchNftId();
     window.scrollTo(0, 0);
   }, [nftId]);
@@ -66,12 +66,18 @@ const ItemDetails = () => {
                           <div className="item_author">
                             <div className="author_list_pp">
                               <Link to={`/author/${item.ownerId}`}>
-                                <img className="lazy" src={item.ownerImage} alt="" />
+                                <img
+                                  className="lazy"
+                                  src={item.ownerImage}
+                                  alt=""
+                                />
                                 <i className="fa fa-check"></i>
                               </Link>
                             </div>
                             <div className="author_list_info">
-                              <Link to={`/author/${item.ownerId}`}>{item.ownerName}</Link>
+                              <Link to={`/author/${item.ownerId}`}>
+                                {item.ownerName}
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -109,19 +115,29 @@ const ItemDetails = () => {
                   ) : (
                     <>
                       <Skeleton width="300px" height="40px" />
-                      <div className="item_info_counts" style={{ marginTop: "10px", marginBottom: "20px" }}>
+                      <div
+                        className="item_info_counts"
+                        style={{ marginTop: "10px", marginBottom: "20px" }}
+                      >
                         <Skeleton width="80px" height="30px" />
                         <span style={{ marginLeft: "10px" }}>
                           <Skeleton width="80px" height="30px" />
                         </span>
                       </div>
                       <Skeleton width="100%" height="80px" />
-                      <div className="d-flex flex-row" style={{ marginTop: "20px" }}>
+                      <div
+                        className="d-flex flex-row"
+                        style={{ marginTop: "20px" }}
+                      >
                         <div className="mr40">
                           <h6>Owner</h6>
                           <div className="item_author">
                             <div className="author_list_pp">
-                              <Skeleton width="50px" height="50px" borderRadius="50%" />
+                              <Skeleton
+                                width="50px"
+                                height="50px"
+                                borderRadius="50%"
+                              />
                             </div>
                             <div className="author_list_info">
                               <Skeleton width="125px" height="20px" />
@@ -135,7 +151,11 @@ const ItemDetails = () => {
                           <h6>Creator</h6>
                           <div className="item_author">
                             <div className="author_list_pp">
-                              <Skeleton width="50px" height="50px" borderRadius="50%" />
+                              <Skeleton
+                                width="50px"
+                                height="50px"
+                                borderRadius="50%"
+                              />
                             </div>
                             <div className="author_list_info">
                               <Skeleton width="125px" height="20px" />
