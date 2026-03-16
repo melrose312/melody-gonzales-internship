@@ -8,15 +8,16 @@ const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
   const [filter, setFilter] = useState("");
   const [loadMore, setLoadMore] = useState(8);
+  const [loading, setLoading] = useState(true);
 
   async function fetchExploreItems(filterValue) {
-    {
-      const filteredItems = filterValue
-        ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`
-        : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
-      const { data } = await axios.get(filteredItems);
-      setExploreItems(data);
-    }
+    setLoading(true);
+    const filteredItems = filterValue
+      ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`
+      : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+    const { data } = await axios.get(filteredItems);
+    setExploreItems(data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const ExploreItems = () => {
         </select>
       </div>
 
-      {exploreItems.length > 0
+      {!loading
         ? exploreItems.slice(0, loadMore).map((exploreItem, id) => (
             <div
               key={id}
@@ -56,20 +57,11 @@ const ExploreItems = () => {
                 className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 style={{ display: "block", backgroundSize: "cover" }}
               >
-                <div className="nft__item">
-                  <div className="author_list_pp">
-                    <Skeleton width="50px" height="50px" borderRadius="50%" />
-                  </div>
-                  <Skeleton width="100%" height="250px" />
-                  <div className="nft__item_info">
-                    <Skeleton width="120px" height="20px" />
-                    <Skeleton width="80px" height="16px" />
-                  </div>
-                </div>
+                <Skeleton width="100%" height="400px" borderRadius="15px" />
               </div>
             ))}
       {/* Hide button when all items display on the page */}
-      {loadMore < exploreItems.length && (
+      {loadMore < exploreItems.length && !loading && (
         <div className="col-md-12 text-center">
           <Link
             to=""
