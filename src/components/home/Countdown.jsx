@@ -9,15 +9,13 @@ function Countdown({ expiryDate }) {
   const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-  
-
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft(expiryDate));
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [expiryDate]);
 
   return (
     <div className="de_countdown">
