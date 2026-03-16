@@ -1,4 +1,4 @@
-import React from "react";
+
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
@@ -11,6 +11,8 @@ const Landing = () => {
       className="no-top no-bottom vh-100"
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
+      data-aos="fade-up"
+      data-aos-delay="1000"
     >
       <div className="v-center">
         <div className="container">
@@ -36,7 +38,7 @@ const Landing = () => {
               <div className="mb-sm-30"></div>
             </div>
             <div className="col-md-6 xs-hide">
-              <img src={NFT} className="lazy img-fluid" alt="" />
+              <img src={NFT} className="lazy img-fluid" alt="" data-aos="fade-down" data-aos-delay="1500" />
             </div>
           </div>
         </div>
