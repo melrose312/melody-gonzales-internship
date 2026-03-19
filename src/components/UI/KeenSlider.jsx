@@ -41,11 +41,17 @@ function KeenSlider({ slides }) {
                             top: "50%",
                             left: "-20px",
                             transform: "translateY(-50%)",
-                            background: "none",
-                            border: "none",
+                            background: "#ffffff",
+                            border: "1px solid #ccc",
+                            borderRadius: "50%",
+                            width: "40px",
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
                             cursor: "pointer",
-                            fontSize: "24px",
-                            zIndex: 1,
+                            fontSize: "18px",
+                            zIndex: 10,
                         }}
                     >
                         <i className="fa fa-chevron-left"></i>
@@ -59,11 +65,17 @@ function KeenSlider({ slides }) {
                             top: "50%",
                             right: "-20px",
                             transform: "translateY(-50%)",
-                            background: "none",
-                            border: "none",
+                            background: "#ffffff",
+                            border: "1px solid #ccc",
+                            borderRadius: "50%",
+                            width: "40px",
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
                             cursor: "pointer",
-                            fontSize: "24px",
-                            zIndex: 1,
+                            fontSize: "18px",
+                            zIndex: 10,
                         }}
                     >
                         <i className="fa fa-chevron-right"></i>

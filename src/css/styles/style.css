@@ -13698,6 +13698,18 @@ a.read_more i {
   -webkit-border-radius: 8px;
 }
 
+@media screen and (max-width: 550px) {
+  .nft__item img {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .nft__item img {
+    width: 100%;
+  }
+}
+
 .nft__item .author_list_pp {
   margin: 0;
 }
@@ -16704,6 +16716,7 @@ img {
 .nft-image {
   height: 100%;
   width: 100%;
+  object-fit: contain;
 }
 
 #filter-items {
